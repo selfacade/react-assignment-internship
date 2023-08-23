@@ -23,7 +23,7 @@ function HomePage() {
       .then((data: Post[]) => setPosts(data))
       .catch((error) => console.error("Error fetching data:", error));
 
-    const isFormFilled = localStorage.getItem("formFilled");
+    const isFormFilled = localStorage.getItem("userDetails");
     if (!isFormFilled) {
       navigate("/");
     }
