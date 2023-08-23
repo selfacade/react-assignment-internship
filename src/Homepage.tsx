@@ -11,16 +11,30 @@ import {
 } from "@mui/material";
 import Post from "./models/Post";
 import DepartmentList from "./components/DepartmentList";
+import { useNavigate } from "react-router-dom";
+
 
 function HomePage() {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [formFilled, setFormFilled] = useState<boolean>(false);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
       .then((data: Post[]) => setPosts(data))
       .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+
+
+  
+  const isFormFilled = localStorage.getItem("userDetails");
+  if (isFormFilled) {
+    setFormFilled(true);
+  } else {
+   navigate("/");
+  }
+}, []);
 
   return (
     <>
