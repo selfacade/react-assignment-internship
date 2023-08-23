@@ -27,7 +27,7 @@ const UserForm = () => {
 
   // Handling the data after submission in the formdata
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -36,7 +36,7 @@ const UserForm = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // storing the data in the local storage

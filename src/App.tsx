@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" exact element={<UserForm />} />
+        <Route path="/"  element={<UserForm />} />
         <Route path="/homepage" element={<Homepage />} />
         {/* Add other routes if needed */}
       </Routes>

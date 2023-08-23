@@ -13,12 +13,9 @@ import Post from "./models/Post";
 import DepartmentList from "./components/DepartmentList";
 import { useNavigate } from "react-router-dom";
 
-
 function HomePage() {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [formFilled, setFormFilled] = useState<boolean>(false);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
@@ -26,15 +23,11 @@ function HomePage() {
       .then((data: Post[]) => setPosts(data))
       .catch((error) => console.error("Error fetching data:", error));
 
-
-  
-  const isFormFilled = localStorage.getItem("userDetails");
-  if (isFormFilled) {
-    setFormFilled(true);
-  } else {
-   navigate("/");
-  }
-}, []);
+    const isFormFilled = localStorage.getItem("formFilled");
+    if (!isFormFilled) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <>
@@ -62,8 +55,8 @@ function HomePage() {
         </TableContainer>
       </Container>
 
-    {/* departsments list */}
-    <h1>Departments List</h1>
+      {/* departsments list */}
+      <h1>Departments List</h1>
       <DepartmentList />
     </>
   );
